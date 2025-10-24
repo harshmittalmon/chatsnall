@@ -8,6 +8,7 @@ import messageRoutes from "./routes/message.route.js";
 
 // DOTENV FILE REQUIREMENTS
 import dotenv from 'dotenv';
+import { connectDB } from './lib/db.js';
 dotenv.config();
 
 
@@ -39,5 +40,6 @@ if (process.env.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
     console.log("Hey, I am here on PORT : ", PORT);
+    connectDB();
 })
 
