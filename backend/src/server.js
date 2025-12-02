@@ -1,6 +1,7 @@
-    // const express =  require("express");
+    // const express =  require("express"); 
     import express from 'express';
     // ESM syntax 
+    import cookieParser from 'cookie-parser';
     import path from 'path';
 
     import authRoutes from "./routes/auth.route.js";
@@ -11,14 +12,13 @@
     import { connectDB } from './lib/db.js';
     dotenv.config();
 
-
     const app = express();
     app.use(express.json());
-
+    app.use(cookieParser());
 
     const __dirname = path.resolve();
 
-    const PORT = process.env.PORT || 5000 ;
+    const PORT = process.env.PORT || 5000;
 
     app.use("/api/auth/", authRoutes);
     app.use("/api/message/", messageRoutes);
@@ -42,4 +42,3 @@
         console.log("Hey, I am here on PORT : ", PORT);
         connectDB();
     })
-
