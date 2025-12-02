@@ -12,7 +12,9 @@
     import { connectDB } from './lib/db.js';
     dotenv.config();
 
-    const app = express();
+    //payload too large error can occur without setting the limit as by default the 
+    // limit for json payload is only 50kb
+    const app = express({});
     app.use(express.json());
     app.use(cookieParser());
 
