@@ -2,9 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    {/* // If app is not wrapped inside BrowserRouter then useRoutes krke error is shown */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
