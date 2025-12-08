@@ -11,12 +11,9 @@ router.get("/test", arcjetProtection,(req,res)=>{
 
 router.post("/logout", logout )
 
-
 router.post("/signup", signup )
 
-
 router.post("/login", arcjetProtection, login ) 
-
 
 router.put("/updateProfile",protectRoute,  updateProfile )
 
