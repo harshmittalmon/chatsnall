@@ -3,7 +3,7 @@ import React from 'react'
 export default function NoConversationPlaceholder() {
   return (
     <div>
-      NoConvo
+      NoConvoPlaceholder
     </div>
   )
 }
