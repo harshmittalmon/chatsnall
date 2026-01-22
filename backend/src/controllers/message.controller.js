@@ -1,4 +1,5 @@
 import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId , io } from "../lib/socket.js";
 import Message from "../models/Message.js";
 import User from "../models/user.js";
 
@@ -41,7 +42,7 @@ export const sendMessage = async (req, res) => {
         const img = req.body.image;
         const text = req.body.text;
 
-        if( !text && !image){
+        if( !text && !img){
             return res.status(400).json({message: "Text or image is required"});
         }
         if( senderId.equals(receiverId  )){
@@ -69,7 +70,10 @@ export const sendMessage = async (req, res) => {
         await newMessage.save();
 
         // todo - send Message in real time if user is online -socket.io    
-
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if( receiverSocketId){
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
         res.status(201).json(newMessage);
     }
     catch (error) {
