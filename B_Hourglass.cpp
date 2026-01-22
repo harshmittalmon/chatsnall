@@ -52,30 +52,8 @@ void integer_string_to_arr(string& s,vector<int> & v){
 
 
 void solve(){
-    int s,k,m;cin>>s>>k>>m;
-    if( k >  s){
-        m = m % 2*k;
-        if( m <= k ){
-            cout << s - m << endl;
-        }
-        else {
-            cout << s - k - m <<endl; 
-        }
-    }
-    else if( k ==  s){
-        m = m % k ; 
-        cout << max(m-k,k-m)<<endl;
-    }
-    else{
-        m = m % k ; 
-        if( m >= s ) {
-            cout << 0 <<endl;
-
-        }
-        else {
-            cout << s - m <<endl;
-        }
-    }
+    int n;
+    cin>>n;
 }
 int main(){
     itc{

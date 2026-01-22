@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const User = mongoose.model("User", userSchema);
+// When this file is imported multiple times, Mongoose tries to re-register User → 💥 error.
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;
