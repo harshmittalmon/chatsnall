@@ -7,14 +7,15 @@
     import authRoutes from "./routes/auth.route.js";
     import messageRoutes from "./routes/message.route.js";
     import {ENV} from "../src/lib/env.js";
+    import {app,server} from './lib/socket.js';
     // DOTENV FILE REQUIREMENTS
     import dotenv from 'dotenv';
     import { connectDB } from './lib/db.js';
     dotenv.config();
 
     //payload too large error can occur without setting the limit as by default the 
-    // limit for json payload is only 50kb
-    const app = express({});
+    // // limit for json payload is only 50kb
+    // const app = express({limit:"5mb"});
     app.use(express.json());
     app.use(cors({origin: ENV.CLIENT_URL, credentials: true}));
     app.use(cookieParser());
@@ -42,7 +43,7 @@
 
     }
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log("Hey, I am here on PORT : ", PORT);
         connectDB();
     })
